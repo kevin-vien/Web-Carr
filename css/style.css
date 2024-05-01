@@ -218,7 +218,7 @@ m-5 tương đương với 48 pixel (3 rem x 16px). */
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("img/carousel-bg-1.jpg") center center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("../img/carousel-bg-1.jpg") center center no-repeat;
     background-size: cover;
 
 
@@ -544,7 +544,7 @@ h4 {
 
 .wp-fact {
     width: 1688px;
-    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("img/carousel-bg-1.jpg") center center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(../img/carousel-bg-1.jpg) center center no-repeat;
     background-image: cover;
     height: 214.39px;
     padding: 48px 0px;
@@ -564,8 +564,12 @@ h4 {
 }
 
 .wp-fact .container-fact .item-fact {
-    text-align: center;
     width: 330px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }
 
 .wp-fact .container-fact img {
@@ -574,7 +578,7 @@ h4 {
 
 .wp-fact .container-fact p {
     color: var(--light);
-
+    text-align: center;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -780,7 +784,7 @@ h4 {
     align-items: center;
 
     margin: 48px 0px;
-    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("img/carousel-bg-2.jpg") center center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("../img/carousel-bg-2.jpg") center center no-repeat;
     background-size: 100%;
 
 
@@ -1037,7 +1041,8 @@ h4 {
 
 }
 
-.wp-technicians .container-technicians .wp-item-technicians .container-item-technicians .img-hover .hover-show-app {
+.wp-technicians .container-technicians .wp-item-technicians .container-item-technicians .img-hover .more-active.hover-show-app {
+
     position: absolute;
     width: 300px;
     height: 300px;
@@ -1048,24 +1053,28 @@ h4 {
     justify-content: center;
     align-items: center;
 
+
 }
 
-.wp-technicians .container-technicians .wp-item-technicians .container-item-technicians .img-hover .hover-show-app a {
+.wp-technicians .container-technicians .wp-item-technicians .container-item-technicians .img-hover .more-active.hover-show-app a {
     display: block;
     width: 38px;
     height: 38px;
     margin: 0px 4px;
-    z-index: 1000;
+
+
 }
 
-.wp-technicians .container-technicians .wp-item-technicians .container-item-technicians .img-hover .hover-show-app img {
+.wp-technicians .container-technicians .wp-item-technicians .container-item-technicians .img-hover .more-active.hover-show-app img {
     display: block;
     width: 38px;
     height: 38px;
     z-index: 1000;
+
+
 }
 
-.wp-technicians .container-technicians .wp-item-technicians .container-item-technicians .img-hover .hover-show-app a:hover {
+.wp-technicians .container-technicians .wp-item-technicians .container-item-technicians .img-hover .more-active.hover-show-app a:hover {
     filter: grayscale(100%) saturate(0%);
 }
 
@@ -1393,13 +1402,17 @@ p {
     height: 56px;
     text-indent: 24px;
     box-sizing: border-box;
+    outline: none;
 }
 
 .wp-footer .container-footer .list-box-footer .item-footer.f3 a:hover {
     letter-spacing: 1px;
     transition: 0.25s ease-in;
 }
-
+.wp-footer .container-footer .list-box-footer .item-footer.f3 img{
+    width: 7.5px;
+    height: 15.11px;
+}
 .wp-footer .container-footer .list-box-footer .item-footer.f1 p img {
     margin-right: 16px;
 }

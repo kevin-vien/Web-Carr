@@ -8,13 +8,89 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/javascript.js"></script>
 
-    <title>Web Car</title>
+    <title>service</title>
 </head>
 
 <body>
+    <style>
+        #information {
+            width: 1688px;
+            height: 228.97px;
 
-    <div id="wrapper">
 
+
+        }
+
+        #information .container-information {
+            margin-top: 75px;
+            width: 1688px;
+            height: 228.97px;
+            background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url("img/carousel-bg-2.jpg") center center no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper .content-information {
+
+            width: 1320px;
+            height: 228.97px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 48px 8px;
+
+        }
+
+        .wrapper .content-information h1 {
+            margin-bottom: 16px;
+            color: #f5f5f5;
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 76.8px;
+            text-align: center;
+
+        }
+
+        .wrapper .content-information .list-breadcumb {
+            display: flex;
+            margin-bottom: 16px;
+        }
+
+        .wrapper .content-information .list-breadcumb li {
+            list-style: none;
+        }
+
+        .wrapper .content-information .list-breadcumb a:not(a.active) {
+            color: #D81324;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            text-align: center;
+            text-transform: uppercase;
+
+        }
+
+        .wrapper .content-information .list-breadcumb a.active {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            text-align: center;
+            text-transform: uppercase;
+
+        }
+
+        .wrapper .content-information .list-breadcumb span {
+            color: #f5f5f5;
+            padding: 0px 8px;
+        }
+    </style>
+    <div class="wrapper" id="information">
         <!-- start heaedr -->
         <div id="header">
             <div id="header-left">
@@ -74,147 +150,17 @@
 
         <!-- end menu -->
 
-        <!-- start carousel -->
-        <div id="content-carousel">
-            <div class="item-carousel">
-                <div class="content-item">
-                    <span class="title">// bảo dưỡng ô tô //</span>
+        <div class="container-information">
+            <div class="content-information">
+                <h1>Dịch Vụ</h1>
+                <ul class="list-breadcumb">
+                    <li><a href="">Home</a></li>
+                    <li><span>/</span><a href="">Pages</a><span>/</span></li>
+                    <li><a class="active" href="">Service</a></li>
 
-                    <h1 class="text-carousel">Trung Tâm Sữa Chữa Ô Tô Chất Lượng</h1>
-                    <a href="">tìm hiểu thêm <img src="img/Mũi Tên.png" alt=""></a>
-                </div>
-                <img id="img-bg-2" src="img/Ô Tô Đen.png" alt="">
-
-            </div>
-            \
-
-        </div>
-
-        <!-- end carousel -->
-
-
-        <!-- start service -->
-        <div class="wp-service">
-            <div class="wp-content-service">
-                <div class="item-service">
-                    <img src="img/Bánh Răng.png" alt="">
-                    <div class="content-service">
-                        <h5 class="title-service">Chất lượng dịch vụ</h5>
-                        <p class="text-service">Chúng tôi cam kết mang đến cho bạn sự chăm sóc chi tiết và chất lượng
-                            cao
-                            nhất cho chiếc xe của bạn.</p>
-                        <a href="" class="read-more">Đọc Thêm</a>
-                    </div>
-                </div>
-                <div class="item-service">
-                    <img src="img/Công Nhân.png" alt="">
-                    <div class="content-service">
-                        <h5 class="title-service">Công nhân chuyên môn</h5>
-                        <p class="text-service">Với đội ngũ kỹ thuật viên giàu kinh nghiệm và kiến thức sâu rộng, giúp
-                            bạn
-                            trải nghiệm đáng tin cậy và chuyên nghiệp.</p>
-                        <a href="" class="read-more">Đọc Thêm</a>
-                    </div>
-                </div>
-                <div class="item-service">
-                    <img src="img/Thiết Bị.png" alt="">
-                    <div class="content-service">
-                        <h5 class="title-service">Thiết bị hiện đại</h5>
-                        <p class="text-service">Chúng tôi sử dụng những thiết bị và công nghệ hiện đại nhất trong quá
-                            trình
-                            bảo dưỡng và sửa chữa xe của bạn.</p>
-                        <a href="" class="read-more">Đọc Thêm</a>
-                    </div>
-                </div>
+                </ul>
             </div>
         </div>
-        <!-- end service  -->
-
-
-
-        <!-- start about -->
-
-        <div class="wp-about">
-
-            <div class="content-about">
-                <div class="about-box-1">
-                    <img src="img/about.jpg" alt="">
-                    <div class="box-child">
-                        <div class="text-top">
-                            <h1>15</h1>
-                            <h4>năm</h4>
-                        </div>
-                        <h4> kinh nghiệm</h4>
-                    </div>
-                </div>
-                <div class="about-box-2">
-                    <h6 class="title">// về chúng tôi //</h6>
-                    <h1><span>CTV AUTO</span> là nơi tốt nhất để chăm sóc ô tô của bạn.</h1>
-                    <p>Hãy đồng hành cùng chúng tôi và trải nghiệm sự khác biệt mà chất lượng và chuyên nghiệp có thể
-                        mang
-                        lại cho chiếc xe của bạn. Chúng tôi sẵn lòng đón chào bạn và sẵn sàng phục vụ mọi nhu cầu của
-                        bạn.
-                    </p>
-                    <div class="list-about">
-                        <div class="item-about">
-                            <div class="box-number">
-                                <span>1</span>
-                            </div>
-                            <div class="content-item">
-                                <h5>Chuyên nghiệp & Chuyên gia</h5>
-                            </div>
-                        </div>
-                        <div class="item-about">
-                            <div class="box-number">
-                                <span>2</span>
-                            </div>
-                            <div class="content-item">
-                                <h5>Trung tâm dịch vụ chất lượng</h5>
-                            </div>
-                        </div>
-                        <div class="item-about">
-                            <div class="box-number">
-                                <span>3</span>
-                            </div>
-                            <div class="content-item">
-                                <h5>Công nhân đoạt giải thưởng</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="">tìm hiểu thêm <img src="img/Mũi Tên.png" alt=""></a>
-                </div>
-            </div>
-        </div>
-        <!-- end about -->
-
-        <!-- start fact -->
-
-        <div class="wp-fact">
-            <div class="container-fact">
-                <div class="item-fact">
-                    <img src="img/Mũi Tên - Năm Kinh Nghiệm.png" alt="">
-                    <h2>15</h2>
-                    <p>Năm Kinh Nghiệm</p>
-                </div>
-                <div class="item-fact">
-                    <img src="img/Kỹ Thuật Viên Chuyên Môn.png" alt="">
-                    <h2>150</h2>
-                    <p>Kỹ Thuật Viên Chuyên Môn</p>
-                </div>
-                <div class="item-fact">
-                    <img src="img/Khách Hàng.png" alt="">
-                    <h2>1086</h2>
-                    <p>Khách Hàng Hài Lòng</p>
-                </div>
-                <div class="item-fact">
-                    <img src="img/Ô Tô Dự Án.png" alt="">
-                    <h2>1086</h2>
-                    <p>Dự Án Hoàn Chỉnh</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- end fact -->
 
 
         <!-- start service-out -->
@@ -314,70 +260,6 @@
         <!-- end booking -->
 
 
-        <!-- start technicians -->
-
-        <div class="wp-technicians">
-            <div class="title-technocians">
-                <h6>// KỸ THUẬT VIÊN CỦA CHÚNG TÔI //
-                </h6>
-                <h1>Kỹ thuật viên đầy kinh nghiệm của chúng tôi
-                </h1>
-            </div>
-            <div class="container-technicians">
-                <div class="wp-item-technicians">
-                    <div class="container-item-technicians">
-                        <div class="img-hover">
-                            <img src="img/NgocVien.jpg" alt="">
-                            <div class="more-active ">
-                                <a href=""><img src="img/FaceBook.png" alt=""></a>
-                                <a href=""><img src="img/Twitter.png" alt=""></a>
-                                <a href=""><img src="img/Insta.png" alt=""></a>
-                            </div>
-                        </div>
-                        <div class="title-info">
-                            <h5>Trần Ngọc Viên</h5>
-                            <small>Kỹ Sư Ô Tô</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="wp-item-technicians">
-                    <div class="container-item-technicians">
-                        <div class="img-hover">
-                            <img src="img/TienCuong.jpg" alt="">
-                            <div class="more-active ">
-                                <a href=""><img src="img/FaceBook.png" alt=""></a>
-                                <a href=""><img src="img/Twitter.png" alt=""></a>
-                                <a href=""><img src="img/Insta.png" alt=""></a>
-                            </div>
-                        </div>
-                        <div class="title-info">
-                            <h5>Nguyễn Tiến Cường</h5>
-                            <small>Quản Lý Dịch Vụ</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="wp-item-technicians">
-                    <div class="container-item-technicians">
-                        <div class="img-hover">
-                            <img src="img/AnhTu.jpg" alt="">
-                            <div class=" more-active">
-                                <a href=""><img src="img/FaceBook.png" alt=""></a>
-                                <a href=""><img src="img/Twitter.png" alt=""></a>
-                                <a href=""><img src="img/Insta.png" alt=""></a>
-                            </div>
-                        </div>
-                        <div class="title-info">
-                            <h5>Nguyễn Anh Tú</h5>
-                            <small>Giám Đốc Kỹ Thuật</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- end technicians -->
-
-
         <!-- start-testimonial -->
 
         <div class=" wp-testimonial">
@@ -445,6 +327,8 @@
 
         <!-- end testimonial -->
 
+
+
         <!-- Footer Start -->
         <div class="wp-footer">
             <div class="container-footer">
@@ -471,11 +355,11 @@
                     </div>
                     <div class="item-footer f3">
                         <h4>Dịch Vụ</h4>
-                        <a href=""><img src="img/Mui Ten Phai.png" alt="">Kiểm Tra Chẩn Đoán</a>
-                        <a href=""><img src="img/Mui Ten Phai.png" alt="">Bảo Dưỡng Động Cơ</a>
-                        <a href=""><img src="img/Mui Ten Phai.png" alt="">Thay Lốp</a>
-                        <a href=""><img src="img/Mui Ten Phai.png" alt="">Thay Dầu</a>
-                        <a href=""><img src="img/Mui Ten Phai.png" alt="">Làm Sạch Chân Không</a>
+                        <a href="">Kiểm Tra Chẩn Đoán</a>
+                        <a href="">Bảo Dưỡng Động Cơ</a>
+                        <a href="">Thay Lốp</a>
+                        <a href="">Thay Dầu</a>
+                        <a href="">Làm Sạch Chân Không</a>
                     </div>
                     <div class="item-footer f4">
                         <h4>Bản Tin</h4>
@@ -507,20 +391,7 @@
         </div>
         <!-- Footer End -->
 
-
-
-
-
-
     </div>
-
-
-
-
-
-
-
-
 </body>
 
 </html>

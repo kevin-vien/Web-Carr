@@ -108,9 +108,17 @@ $(document).ready(function () {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
     }
+    // -------------------------------------------------technocian----------------------------------------------------
+    $('.wp-item-technicians').hover(
+        function () {
+            $(this).find('.more-active').toggleClass('hover-show-app');
 
 
-    // -------------------------------------------technocians-----------------------------------------------------
+
+        }
+    );
+
+    // -------------------------------------------testimonial-----------------------------------------------------
     $('.testimonial-item').first().addClass('active'); // Hiển thị phần tử đầu tiên mặc định
 
     $('.list-button .btn-item').click(function () {
