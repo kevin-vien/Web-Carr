@@ -1,8 +1,11 @@
 
 // -------------------------------------------------menu------------------------------------------------------------
 $(document).ready(function () {
-    $('#main-menu>li#booking>a').click(function () {
-        $('#container').toggleClass('hidden');
+
+    $('#main-menu>li#booking>a').click(function (event) {
+        event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
+
+        $('#container').toggleClass('hidden'); // Sử dụng toggleClass() để thêm hoặc loại bỏ lớp hidden
 
         return false;
     });
@@ -22,8 +25,38 @@ $(document).ready(function () {
         }
         return false;
     })
+    // ---------------------------------------carousel-----------------------------------------------------------------------------
+    var currentIndex = 0;
+    var items = $(".item-carousel");
+    var intervalId;
 
+    // Hàm để chuyển đổi đến mục tiếp theo trong carousel
+    function nextItem() {
+        currentIndex = (currentIndex + 1) % items.length;
+        showItem(currentIndex);
+    }
 
+    // Hàm để hiển thị mục trong carousel
+    function showItem(index) {
+        items.hide();
+        items.eq(index).show();
+    }
+
+    // Bắt đầu tự động chạy carousel
+    intervalId = setInterval(nextItem, 1000); // Thay đổi 2000 thành khoảng thời gian bạn muốn
+
+    // Xử lý khi người dùng click vào nút prev
+    $(".prev").click(function () {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        showItem(currentIndex);
+        clearInterval(intervalId); // Dừng tự động chạy khi người dùng click
+    });
+
+    // Xử lý khi người dùng click vào nút next
+    $(".next").click(function () {
+        nextItem();
+        clearInterval(intervalId); // Dừng tự động chạy khi người dùng click
+    });
 
 
     // -------------------------------------------------service-out---------------------------------------------------
@@ -57,7 +90,7 @@ $(document).ready(function () {
 
 
     // ---------------------------booking-------------------------------------
-    $('#bookingForm').submit(function (event) {
+    $('.container-form form').submit(function (event) {
         // Ngăn chặn hành động gửi form mặc định
         event.preventDefault();
 
@@ -65,46 +98,58 @@ $(document).ready(function () {
         $('.error').text('');
 
         // Kiểm tra họ và tên
-        var fullName = $('#fullName').val();
-        if (fullName == '') {
-            $('#fullNameError').text('Vui lòng nhập họ và tên.');
+        var fullName = $('#fullName').val().trim();
+        if (fullName === '') {
+            $('#fullNameError').text('Vui lòng nhập họ và tên.').css({ outline: 'none', color: 'red', position: 'absolute', top: '40px', 'font-size': '11px', left: '5px' });
             return;
+        } else if (!/^[a-zA-Z\s]+$/.test(fullName)) {
+            $('#fullNameError').text('Họ và tên chỉ được chứa ký tự chữ.').css({ outline: 'none', color: 'red', position: 'absolute', top: '40px', 'font-size': '11px', left: '5px' });
+            return;
+        }else {
+            $('#serviceError').empty(); // Xóa nội dung của phần tử hiển thị lỗi
         }
 
         // Kiểm tra địa chỉ email
-        var email = $('#email').val();
-        if (email == '') {
-            $('#emailError').text('Vui lòng nhập địa chỉ email.');
+        var email = $('#email').val().trim();
+        if (email === '') {
+            $('#emailError').text('Vui lòng nhập địa chỉ email.').css({ outline: 'none', color: 'red', position: 'absolute', top: '40px', 'font-size': '11px', right: '5px' });
             return;
-        }
-        if (!validateEmail(email)) {
-            $('#emailError').text('Địa chỉ email không hợp lệ.');
+        } else if (!validateEmail(email)) {
+            $('#emailError').text('Địa chỉ email không hợp lệ.').css({ outline: 'none', color: 'red', position: 'absolute', top: '40px', 'font-size': '11px', right: '5px' });
             return;
+        }else {
+            $('#serviceError').empty(); // Xóa nội dung của phần tử hiển thị lỗi
         }
 
         // Kiểm tra việc chọn dịch vụ
         var service = $('#service').val();
-        if (service == 'Chọn một dịch vụ') {
-            $('#serviceError').text('Vui lòng chọn một dịch vụ.');
+        
+        if (service === '0') {
+            $('#serviceError').text('Vui lòng chọn một dịch vụ.').css({position: 'absolute', top: '40px', left: '6px', 'font-size': '11px', 'outline': 'none', color: 'red'});
             return;
+        }else {
+            $('#serviceError').empty(); // Xóa nội dung của phần tử hiển thị lỗi
         }
 
         // Kiểm tra ngày phục vụ
-        var serviceDate = $('#serviceDate').val();
-        if (serviceDate == '') {
-            $('#serviceDateError').text('Vui lòng nhập ngày phục vụ.');
+        var serviceDate = $('#serviceDate').val().trim();
+        if (serviceDate === '') {
+            $('#serviceDateError').text('Vui lòng nhập ngày phục vụ dưới dạng số.').css({position: 'absolute', 'font-size': '11px', color: 'red', top: '40px', right: '42px'});
             return;
+        } else if (isNaN(serviceDate)) {
+            $('#serviceDateError').text('Vui lòng nhập ngày phục vụ dưới dạng số.').css({position: 'absolute', 'font-size': '11px', color: 'red', top: '40px', right: '42px'});
+            return;
+        }else {
+            $('#serviceError').empty(); // Xóa nội dung của phần tử hiển thị lỗi
         }
+       
 
-        // Nếu tất cả kiểm tra thành công, bạn có thể gửi form đi
-        // Ở đây bạn có thể thực hiện các hành động khác trước khi gửi form
-
-        // Ví dụ: Hiển thị cảnh báo form đã sẵn sàng gửi
-        alert('Form đã sẵn sàng gửi!');
+       
+        alert('Form đã gửi!');
     });
 
-    // Hàm kiểm tra định dạng email
     function validateEmail(email) {
+        // Kiểm tra định dạng email bằng biểu thức chính quy
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
     }
@@ -119,51 +164,46 @@ $(document).ready(function () {
     );
 
     // -------------------------------------------testimonial-----------------------------------------------------
-    $('.testimonial-item').first().addClass('active'); // Hiển thị phần tử đầu tiên mặc định
+    // Biến để lưu trữ chỉ số của phần tử hiện tại
+    var currentIndex = 0;
+    // Biến để lưu trữ tất cả các phần tử testimonial-item
+    var items = $('.testimonial-item');
+    // Tổng số phần tử
+    var totalItems = items.length;
+    // Hàm tự động chuyển slide sang phải
+    function moveRight() {
+        if (currentIndex < totalItems - 1) {
+            items.eq(currentIndex).removeClass('active');
+            currentIndex++;
+            items.eq(currentIndex).addClass('active');
+        } else {
+            items.removeClass('active');
+            currentIndex = 0;
+            items.eq(currentIndex).addClass('active');
+        }
+    }
+    // Hàm tự động chạy slide sau một khoảng thời gian
+    var autoSlide = setInterval(function () {
+        moveRight();
+    }, 3000); // Thời gian tự động chuyển slide (ms)    
 
-    $('.list-button .btn-item').click(function () {
-        var index = $(this).index(); // Lấy chỉ số của nút được click
-
-        // Loại bỏ lớp active khỏi tất cả các phần tử testimonial-item
-        $('.testimonial-item').removeClass('active');
-
-        // Thêm lớp active vào phần tử testimonial-item tương ứng với nút được click
-        $('.testimonial-item').eq(index).addClass('active');
-
-        // Loại bỏ lớp active khỏi tất cả các nút button
-        $('.list-button .btn-item').removeClass('active-btn');
-
-        // Thêm lớp active vào nút được click
-        $(this).addClass('active-btn');
-
-        // Loại bỏ lớp active-bg-p khỏi tất cả các phần tử testimonial-text
-        $('.testimonial-text').removeClass('active-bg-p');
-
-        // Thêm lớp active-bg-p vào phần tử testimonial-text tương ứng với phần tử testimonial-item được kích hoạt
-        $('.testimonial-item.active .testimonial-text').addClass('active-bg-p');
-
-        // Loại bỏ lớp active-p khỏi tất cả các phần tử p trong testimonial-text
-        $('.testimonial-text p').removeClass('active-p');
-
-        // Thêm lớp active-p vào phần tử p trong testimonial-text tương ứng với phần tử testimonial-item được kích hoạt
-        $('.testimonial-item.active .testimonial-text p').addClass('active-p');
-    });
 
     // // ---------------------------------------------------------footer------------------------------------------------------------
-    // function validateEmail(email) {
-    //     var re = /\S+@\S+\.\S+/;
-    //     return re.test(email);
-    // }
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
 
-    // // Click event handler for SignUp button
-    // $('button[type="button"]').click(function () {
-    //     var email = $('input[type="email"]').val();
-    //     if (validateEmail(email)) {
-    //         alert('Email is valid');
-    //         // Here you can add code to submit the form or perform other actions
-    //     } else {
-    //         // Display error message if email is not valid
-    //         $('.error-message').text('Please enter a valid email').show();
-    //     }
-    // });
+    // Click event handler for SignUp button
+    $('button').click(function(){
+        var email = $('.form-email input[type="email"]').val();
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Biểu thức chính quy kiểm tra định dạng email
+        if (!emailPattern.test(email)) {
+            alert('Vui lòng nhập đúng định dạng email.');
+            return false; // Ngăn form được submit
+        }
+        // Nếu email hợp lệ, bạn có thể thực hiện các hành động tiếp theo ở đây
+    });
 });
+
+
