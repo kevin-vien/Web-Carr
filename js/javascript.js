@@ -30,33 +30,34 @@ $(document).ready(function () {
     var items = $(".item-carousel");
     var intervalId;
 
-    // Hàm để chuyển đổi đến mục tiếp theo trong carousel
+    // Function to move to the next item in the carousel
     function nextItem() {
         currentIndex = (currentIndex + 1) % items.length;
         showItem(currentIndex);
     }
 
-    // Hàm để hiển thị mục trong carousel
+    // Function to show the item in the carousel with a fade effect
     function showItem(index) {
-        items.hide();
-        items.eq(index).show();
+        items.fadeOut(800); // Fade out all items
+        items.eq(index).fadeIn(2000); // Fade in the selected item
     }
 
-    // Bắt đầu tự động chạy carousel
-    intervalId = setInterval(nextItem, 1000); // Thay đổi 2000 thành khoảng thời gian bạn muốn
+    // Start automatic carousel
+    intervalId = setInterval(nextItem, 2000); // Change 1000 to the desired interval time
 
-    // Xử lý khi người dùng click vào nút prev
+    // Handling when the user clicks the previous button
     $(".prev").click(function () {
         currentIndex = (currentIndex - 1 + items.length) % items.length;
         showItem(currentIndex);
-        clearInterval(intervalId); // Dừng tự động chạy khi người dùng click
+        clearInterval(intervalId); // Stop automatic carousel when user clicks
     });
 
-    // Xử lý khi người dùng click vào nút next
+    // Handling when the user clicks the next button
     $(".next").click(function () {
         nextItem();
-        clearInterval(intervalId); // Dừng tự động chạy khi người dùng click
+        clearInterval(intervalId); // Stop automatic carousel when user clicks
     });
+
 
 
     // -------------------------------------------------service-out---------------------------------------------------
@@ -105,46 +106,46 @@ $(document).ready(function () {
         } else if (!/^[a-zA-Z\s]+$/.test(fullName)) {
             $('#fullNameError').text('Họ và tên chỉ được chứa ký tự chữ.').css({ outline: 'none', color: 'red', position: 'absolute', top: '40px', 'font-size': '11px', left: '5px' });
             return;
-        }else {
+        } else {
             $('#serviceError').empty(); // Xóa nội dung của phần tử hiển thị lỗi
         }
 
         // Kiểm tra địa chỉ email
         var email = $('#email').val().trim();
         if (email === '') {
-            $('#emailError').text('Vui lòng nhập địa chỉ email.').css({ outline: 'none', color: 'red', position: 'absolute', top: '40px', 'font-size': '11px', right: '5px' });
+            $('#emailError').text('Vui lòng nhập địa chỉ email.').css({ outline: 'none', color: 'red', position: 'absolute', top: '40px', 'font-size': '11px', right: '116px' });
             return;
         } else if (!validateEmail(email)) {
-            $('#emailError').text('Địa chỉ email không hợp lệ.').css({ outline: 'none', color: 'red', position: 'absolute', top: '40px', 'font-size': '11px', right: '5px' });
+            $('#emailError').text('Địa chỉ email không hợp lệ.').css({ outline: 'none', color: 'red', position: 'absolute', top: '40px', 'font-size': '11px', right: '116px' });
             return;
-        }else {
+        } else {
             $('#serviceError').empty(); // Xóa nội dung của phần tử hiển thị lỗi
         }
 
         // Kiểm tra việc chọn dịch vụ
         var service = $('#service').val();
-        
+
         if (service === '0') {
-            $('#serviceError').text('Vui lòng chọn một dịch vụ.').css({position: 'absolute', top: '40px', left: '6px', 'font-size': '11px', 'outline': 'none', color: 'red'});
+            $('#serviceError').text('Vui lòng chọn một dịch vụ.').css({ position: 'absolute', top: '40px', left: '6px', 'font-size': '11px', 'outline': 'none', color: 'red' });
             return;
-        }else {
+        } else {
             $('#serviceError').empty(); // Xóa nội dung của phần tử hiển thị lỗi
         }
 
         // Kiểm tra ngày phục vụ
         var serviceDate = $('#serviceDate').val().trim();
         if (serviceDate === '') {
-            $('#serviceDateError').text('Vui lòng nhập ngày phục vụ dưới dạng số.').css({position: 'absolute', 'font-size': '11px', color: 'red', top: '40px', right: '42px'});
+            $('#serviceDateError').text('Vui lòng nhập ngày phục vụ dưới dạng số.').css({ position: 'absolute', 'font-size': '11px', color: 'red', top: '40px', right: '42px' });
             return;
         } else if (isNaN(serviceDate)) {
-            $('#serviceDateError').text('Vui lòng nhập ngày phục vụ dưới dạng số.').css({position: 'absolute', 'font-size': '11px', color: 'red', top: '40px', right: '42px'});
+            $('#serviceDateError').text('Vui lòng nhập ngày phục vụ dưới dạng số.').css({ position: 'absolute', 'font-size': '11px', color: 'red', top: '40px', right: '42px' });
             return;
-        }else {
+        } else {
             $('#serviceError').empty(); // Xóa nội dung của phần tử hiển thị lỗi
         }
-       
 
-       
+
+
         alert('Form đã gửi!');
         return false;
     });
@@ -165,30 +166,26 @@ $(document).ready(function () {
     );
 
     // -------------------------------------------testimonial-----------------------------------------------------
-    // Biến để lưu trữ chỉ số của phần tử hiện tại
-    var currentIndex = 0;
-    // Biến để lưu trữ tất cả các phần tử testimonial-item
-    var items = $('.testimonial-item');
-    // Tổng số phần tử
-    var totalItems = items.length;
-    // Hàm tự động chuyển slide sang phải
-    function moveRight() {
-        if (currentIndex < totalItems - 1) {
-            items.eq(currentIndex).removeClass('active');
-            currentIndex++;
-            items.eq(currentIndex).addClass('active');
-        } else {
-            items.removeClass('active');
-            currentIndex = 0;
-            items.eq(currentIndex).addClass('active');
+    $(".content-testimonial").owlCarousel({
+        loop: true, // Cho phép vòng lặp
+        margin: 30, // Khoảng cách giữa các item
+        nav: true, // Hiển thị nút điều hướng
+        dots: false, // Ẩn các chấm tròn chỉ mục
+        autoplay: true, // Tự động chạy carousel
+        autoplayTimeout: 5000, // Thời gian chờ giữa các lượt chạy tự động
+        autoplayHoverPause: true, // Tạm dừng tự động chạy khi di chuột qua carousel
+        responsive:{
+            0:{
+                items:1 // Hiển thị 1 item trên màn hình nhỏ
+            },
+            600:{
+                items:2 // Hiển thị 2 item trên màn hình có độ rộng từ 600px trở lên
+            },
+            1000:{
+                items:3 // Hiển thị 3 item trên màn hình có độ rộng từ 1000px trở lên
+            }
         }
-    }
-    // Hàm tự động chạy slide sau một khoảng thời gian
-    var autoSlide = setInterval(function () {
-        moveRight();
-    }, 3000); // Thời gian tự động chuyển slide (ms)    
-
-
+    });
     // // ---------------------------------------------------------footer------------------------------------------------------------
     function validateEmail(email) {
         var re = /\S+@\S+\.\S+/;
@@ -196,7 +193,7 @@ $(document).ready(function () {
     }
 
     // Click event handler for SignUp button
-    $('.form-email button').click(function(){
+    $('.form-email button').click(function () {
         var email = $('.form-email input[type="email"]').val();
         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Biểu thức chính quy kiểm tra định dạng email
         if (!emailPattern.test(email)) {
